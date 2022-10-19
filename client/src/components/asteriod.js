@@ -3,7 +3,6 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Asteriod = ({ asteriodData, favorites }) => {
-  
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
@@ -11,33 +10,29 @@ const Asteriod = ({ asteriodData, favorites }) => {
   const [hideLightbox, setHideLightbox] = useState(true);
   let name;
   let id;
-  if(!favorites){
-    const id=asteriodData.id
+  if (!favorites) {
+    const id = asteriodData.id;
     const name = asteriodData.name;
-  const absMagnitude = asteriodData.absolute_magnitude_h;
-  const diameter_min =
-    asteriodData.estimated_diameter.kilometers.estimated_diameter_min;
-  const diameter_max =
-    asteriodData.estimated_diameter.kilometers.estimated_diameter_max;
-  const isHazadous = asteriodData.is_potentially_hazardous_asteroid;
+    const absMagnitude = asteriodData.absolute_magnitude_h;
+    const diameter_min =
+      asteriodData.estimated_diameter.kilometers.estimated_diameter_min;
+    const diameter_max =
+      asteriodData.estimated_diameter.kilometers.estimated_diameter_max;
+    const isHazadous = asteriodData.is_potentially_hazardous_asteroid;
+  } else {
+    const name = asteriodData.asteriodName;
+    const id = asteriodData.asteriodId;
   }
-  else{
-    const name=asteriodData.asteriodName;
-    const id=asteriodData.asteriodId;
-  }
-  
+
   const handleChange = async (e) => {
     const asteriodInfo = asteriodInfoRef.current.textContent;
     const { checked } = e.target;
 
     if (checked !== true) {
       try {
-        const response = await axiosPrivate.post(
-          `/fav-asteroids/rm/:${id}`,
-          {
-            asteriodId: id,
-          }
-        );
+        const response = await axiosPrivate.post(`/fav-asteroids/rm/:${id}`, {
+          asteriodId: id,
+        });
         console.log(response.data);
       } catch (err) {
         console.log(err);
