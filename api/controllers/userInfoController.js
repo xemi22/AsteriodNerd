@@ -12,7 +12,7 @@ const handleUserInfoRequest = async (req, res) => {
   });
   const foundUser = await User.findOne({ username }).exec();
   if (!foundUser) return res.sendStatus(401); //Unauthorized
-  else console.log(JSON.stringify(foundUser));
+  else 
   res.json(foundUser);
 };
 

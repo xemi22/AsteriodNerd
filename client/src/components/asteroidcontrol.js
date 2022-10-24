@@ -2,7 +2,7 @@ import React from "react";
 import DateCmp from "./date";
 import {HiSearchCircle} from "react-icons/hi"
 import { useState } from "react";
-const AsteriodControl = ({getAsteroids}) => {
+const AsteroidControl = ({setAsteroidRequestState,setLoading,setStartDate,setEndDate}) => {
   const [dateRange, setDateRange] = useState([null, null]);
   const [sDate, eDate] = dateRange;
   const formatDate = (date) => {
@@ -11,22 +11,26 @@ const AsteriodControl = ({getAsteroids}) => {
       .toString()
       .padStart(2, "0")}-${d.getDate().toString().padStart(2, "0")}`;
   };
-  const handleAsteriodRequest=(e)=>{
+  const handleAsteroidRequest=(e)=>{
         e.preventDefault()
         let startDate=formatDate(sDate);
         let endDate=formatDate(eDate)
-    
-        getAsteroids(startDate,endDate)
+        setStartDate(startDate)
+        setEndDate(endDate)
+        setAsteroidRequestState(true);
+        
   }
   return (
-    <div className="asteriod_ctrl">
+    
+    <div className="asteroid_ctrl">
       <DateCmp
         setDateRange={setDateRange}
         startDate={sDate}
         endDate={eDate}
       />
-      <button onClick={handleAsteriodRequest}><HiSearchCircle size={"25px"}/></button>
+      <button onClick={handleAsteroidRequest}><HiSearchCircle size={"25px"}/></button>
     </div>
+    
   );
 };
-export default AsteriodControl;
+export default AsteroidControl;

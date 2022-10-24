@@ -4,7 +4,6 @@ import bcrypt from "bcrypt"
 
 const handleNewUser = async (req, res) => {
   const {user,pwd } = req.body;
-  console.log(req.body)
   if (!user || !pwd)
     return res
       .sendStatus(400)
@@ -27,7 +26,7 @@ const handleNewUser = async (req, res) => {
 
     });
 
-    console.log(result);
+   
     res.status(201).json({ success: `New user ${user} created!` });
   } catch (err) {
     res.status(500).json({ message: err.message });

@@ -22,6 +22,7 @@ const handleRefreshToken = async (req, res) => {
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "1h" }
     );
+    console.log("sending the access token");
     res.json({ accessToken });
   });
 };

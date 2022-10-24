@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken"
 
 const handleLogin = async (req, res) => {
   const { user, pwd } = req.body;
-  console.log(req.body)
+  
   if (!user || !pwd)
     return res
       .status(400)
@@ -32,7 +32,7 @@ const handleLogin = async (req, res) => {
 
     foundUser.refreshToken = refreshToken;
     const result = await foundUser.save();
-    console.log(result);
+    
 
     res.cookie("jwt", refreshToken, {
       httpOnly: true,

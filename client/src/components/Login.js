@@ -38,10 +38,8 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      console.log(JSON.stringify(response?.data));
 
       const accessToken = response?.data?.accessToken;
-      console.log(accessToken);
       setAuth({ user, pwd, accessToken });
       setUser("");
       setPwd("");
@@ -94,7 +92,10 @@ const Login = () => {
         </div>
         <input type="submit" value="Login" className="styled-btn" />
         <button className="styled-btn">
-          <Link to="/register" style={{ textDecoration: "none", color: "white" }}>
+          <Link
+            to="/register"
+            style={{ textDecoration: "none", color: "white" }}
+          >
             Register
           </Link>
         </button>
