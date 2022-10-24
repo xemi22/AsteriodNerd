@@ -15,7 +15,6 @@ const Asteroid = ({ asteroidDataProp, favorites }) => {
   });
 
   useEffect(() => {
-    
     if (asteroidDataProp) {
       console.log("adding data for single componenet");
       if (favorites) {
@@ -38,7 +37,7 @@ const Asteroid = ({ asteroidDataProp, favorites }) => {
         });
       }
     }
-  }, [asteroidDataProp,favorites]);
+  }, [asteroidDataProp, favorites]);
 
   const handleChange = async (e) => {
     const asteroidInfo = asteroidInfoRef.current.textContent;
@@ -115,15 +114,17 @@ const Asteroid = ({ asteroidDataProp, favorites }) => {
             onMouseEnter={() => setHideLightbox(false)}
             onMouseLeave={() => setHideLightbox(true)}
           >
-            {" "}
-            Asteroid {asteroidData.aName} and id {asteroidData.aId}`
+            Asteroid {asteroidData.aName} and id {asteroidData.aId}
           </div>
           <br />
           <div
             ref={asteroidInfoRef}
             className={`lightbox ${hideLightbox ? "hide-lightbox" : ""}`}
           >
-            Absolute magnitude of {asteroidData.absMagnitude},  maximal diameter of {parseFloat(asteroidData.diameterMin).toFixed(2)}km and minimal {parseFloat(asteroidData.diameterMax).toFixed(2)}km, also was considered {asteroidData.isHazard ? "hazardous" : "non-Hazardous"}
+            Absolute magnitude of {asteroidData.absMagnitude}, maximal diameter
+            of {parseFloat(asteroidData.diameterMin).toFixed(2)}km and minimal{" "}
+            {parseFloat(asteroidData.diameterMax).toFixed(2)}km, also was
+            considered {asteroidData.isHazard ? "hazardous" : "non-Hazardous"}
           </div>
         </div>
       );

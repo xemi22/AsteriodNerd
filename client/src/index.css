@@ -139,8 +139,6 @@ h4 {
   margin-bottom: 16px;
 }
 
-
-
 #logout-btn {
   display: inline-block;
   padding: 10px 15px;
@@ -177,16 +175,12 @@ h4 {
 }
 
 .lightbox {
-  position: absolute;
+  position: relative;
+  bottom: 9px;
   display: block;
-  top: 25px;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background-color: #18352c;
   transition: 0.4s all;
   border-radius: 16px;
-  
 }
 
 .hide-lightbox {
@@ -211,7 +205,10 @@ h4 {
 }
 
 .asteroid-container {
-  padding-top: 15px;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .asteroid_ctrl {
   margin-top: 15px;
@@ -220,7 +217,12 @@ h4 {
   justify-content: center;
 }
 
-
+.asteriod-num{
+  color: #34495e;
+  font-size: 0.99em;
+  padding-bottom: 10px;
+  font-weight:550;
+}
 
 .left-nav ul {
   margin-top: 10px;
@@ -257,7 +259,10 @@ h4 {
   color: #718daa;
 }
 
-h2,h3,a,section {
+h2,
+h3,
+a,
+section {
   color: #34495e;
 }
 
@@ -278,8 +283,7 @@ h2,h3,a,section {
   align-items: center;
   transition: 0.5s;
   cursor: pointer;
-  margin-bottom: 6px;
-  padding: 9px;
+  margin-bottom: 5px;
 
   outline-style: inset;
   flex-direction: column;
@@ -292,7 +296,6 @@ h2,h3,a,section {
 
 .asteroid .base-info {
   font-size: 15px;
-  padding: 15px;
+  padding-top: 2px;
   font-weight: 600;
-  
 }

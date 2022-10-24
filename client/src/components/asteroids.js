@@ -15,13 +15,9 @@ const Asteroids = ({ asterObj }) => {
     if (asterObj?.favorites) {
       return (
         <div className="asteroid-container">
-          <h3>
-            Number of asteroids is
-            <span style={{ color: "rgba(100,20,20,0.9)" }}>
-              {" "}
-              {asterObj.element_count}
-            </span>
-          </h3>
+          <div className="asteriod-num">
+                Number of asteroids is {asterObj.element_count}
+              </div>
           <div className="asteroids">
             {asteroidsData.map((asteroid) => {
               return (
@@ -40,13 +36,9 @@ const Asteroids = ({ asterObj }) => {
         <>
           {asterObj?.element_count !== "" ? (
             <div className="asteroid-container">
-              <h3>
-                Number of asteroids is
-                <span style={{ color: "rgba(100,20,20,0.9)" }}>
-                  {" "}
-                  {asterObj?.element_count}
-                </span>
-              </h3>
+              <div className="asteriod-num">
+                Number of asteroids is {asterObj.element_count}
+              </div>
               <div className="asteroids">
                 {asteroidsData.map(([date, asteroid_on_date]) => {
                   return (
