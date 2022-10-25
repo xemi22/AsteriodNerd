@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Asteroids from "./asteroids.js";
 import AsteroidControl from "./asteroidcontrol";
 import "./css/loading.css";
-
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 const Home = () => {
@@ -42,9 +41,7 @@ const Home = () => {
           navigate("/auth", { state: { from: location }, replace: true });
         }
       };
-      // data.links,
-      // element_count:parseInt( data.element_count),
-      // near_earth_objects: data.near_earth_objects,
+      
 
       console.log("getAsteriodsEffect is happening");
       getAsteroids()
@@ -91,15 +88,16 @@ const Home = () => {
         setStartDate={setStartDate}
         setEndDate={setEndDate}
       />
-      {loading && (
+
+      {loading ? (
         <div class="loading">
           Loading
           <div className="inner-loading"></div>
         </div>
-      )}
-      {!loading && parseInt(asteroids.element_count) > 0 && (
+      ) : null}
+      {!loading && parseInt(asteroids.element_count) > 0 ? (
         <Asteroids asterObj={asteroids} />
-      )}
+      ) : null}
     </div>
   );
 };

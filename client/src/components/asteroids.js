@@ -16,8 +16,8 @@ const Asteroids = ({ asterObj }) => {
       return (
         <div className="asteroid-container">
           <div className="asteriod-num">
-                Number of asteroids is {asterObj.element_count}
-              </div>
+            Number of asteroids is {asterObj.element_count}
+          </div>
           <div className="asteroids">
             {asteroidsData.map((asteroid) => {
               return (

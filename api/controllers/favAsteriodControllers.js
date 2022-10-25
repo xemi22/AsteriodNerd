@@ -8,6 +8,7 @@ export const handleFavAsteriodRequest = async (req, res) => {
     if (err) return res.sendStatus(403); //invalid token
     username = decoded.username;
   });
+  console.log("recieved a favorite asteriods request")
   const foundUser = await User.findOne({ username }).exec();
   if (!foundUser) return res.sendStatus(401); //Unauthorized
   else res.json(foundUser.favoriteAsteroids);

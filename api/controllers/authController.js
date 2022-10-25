@@ -21,29 +21,31 @@ const handleLogin = async (req, res) => {
     const accessToken = jwt.sign(
       {  username: foundUser.username },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "30m" }
+      { expiresIn: "30s" }
     );
     const refreshToken = jwt.sign(
       { username: foundUser.username },
       process.env.REFRESH_TOKEN_SECRET,
       { expiresIn: "1d" }
     );
+     
     // Saving refreshToken with current user
 
     foundUser.refreshToken = refreshToken;
     const result = await foundUser.save();
-    
+    console.log("assigned user a refresh token and access token");
+    console.log(refreshToken)
 
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
       sameSite: "None",
       secure: true,
-      maxAge: 24 * 60 * 60 * 1000,
+      maxAge:  15 * 60 * 1000,
     });
     res.json({ accessToken });
   } else {
     res.sendStatus(401);
   }
-};
+};  
 
 export default handleLogin;

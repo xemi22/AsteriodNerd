@@ -13,6 +13,8 @@ const useRefreshToken = () => {
             console.log(response.data.accessToken);
             return { ...prev, accessToken: response.data.accessToken }
         });
+        console.log("accesstoken was changed to");
+        console.log(response.data.accessToken);
         return response.data.accessToken;
     }
     return refresh;

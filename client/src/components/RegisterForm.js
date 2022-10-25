@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "./api/posts";
 function RegisterForm() {
   const [response,setResponse]=useState("");

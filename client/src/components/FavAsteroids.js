@@ -1,8 +1,9 @@
 import React from "react";
 import Asteroids from "./asteroids";
-import { useState, useEffect, useCallback } from "react";
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import useFavorite from "../hooks/useFavorite";
+import { useCallback } from "react";
 
 const FavAsteroids = () => {
   const [loading, setLoading] = useState(true);
@@ -11,32 +12,45 @@ const FavAsteroids = () => {
     element_count: Number,
     near_earth_objects: [],
   });
-  const axiosPrivate = useAxiosPrivate();
+ 
   const navigate = useNavigate();
   const location = useLocation();
+  const response=useFavorite()
+  
 
-  const getFavAsteroids = useCallback(async () => {
-    try {
-      const response = await axiosPrivate.get("/fav-asteroids");
-
-      let responseData = Object.values(response.data);
-      setAsteriods({
-        favorites: true,
-        element_count: responseData.length,
-        near_earth_objects: responseData,
-      });
-    } catch (err) {
-      console.log(err);
+  const getAsteriods =useCallback(
+  async()=>{
+    let {message,data}=await response();
+    if(message==="error")
+    { 
+      console.error(data);
       navigate("/auth", { state: { from: location }, replace: true });
     }
-  }, [ axiosPrivate, location, navigate]);
+    else if (message==="success")
+    {
+      setAsteriods({
+              favorites: true,
+              element_count: data.length,
+              near_earth_objects: data
+            });
+          
+    }
+    else console.log("why am i here");
+  },[response,location,navigate])
 
   useEffect(() => {
+    console.log("loading state "+loading);
     if (loading) {
-      getFavAsteroids().then(setLoading(false));
-      console.log("favorit asteroid request logging ");
+        console.log("calling getAsteriods");
+        getAsteriods();
+      
     }
-  }, [getFavAsteroids, loading]);
+    return()=>{
+      setLoading(loadingState=>{
+        return false;
+      })
+    }
+  }, [getAsteriods,loading]);
 
   if (loading) return <></>;
   else

@@ -19,7 +19,7 @@ function App() {
         <Route path="/auth" element={<Login />} />
        
         <Route path="/register" element={<Register />} />
-        {/* <Route element={<RequireAuth />}> */}
+        
         <Route path="/" element={<Navbar />}>
           <Route
             index

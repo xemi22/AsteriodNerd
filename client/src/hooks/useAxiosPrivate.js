@@ -1,6 +1,6 @@
 import { axiosPrivate } from "../components/api/posts.js";
 import { useEffect } from "react";
-import useRefreshToken from "./useRefreshToken.js";
+import useRefreshToken from "./useRefreshToken";
 import useAuth from "./useAuth";
 
 const useAxiosPrivate = () => {
@@ -26,8 +26,11 @@ const useAxiosPrivate = () => {
                     prevRequest.sent = true;
                     const newAccessToken = await refresh();
                     prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+                    console.log(newAccessToken);
+                    console.log("making new request with new token");
                     return axiosPrivate(prevRequest);
                 }
+                console.log("promise rejected axios private")
                 return Promise.reject(error);
             }
         );
