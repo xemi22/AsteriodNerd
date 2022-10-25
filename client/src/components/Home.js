@@ -37,11 +37,11 @@ const Home = () => {
           console.log("GetAsteriods Function is happening");
           return response.data;
         } catch (err) {
-          console.error(err);
+          if ((err.name = "AborError")) console.log("Aborted Request");
+          else console.error(err);
           navigate("/auth", { state: { from: location }, replace: true });
         }
       };
-      
 
       console.log("getAsteriodsEffect is happening");
       getAsteroids()

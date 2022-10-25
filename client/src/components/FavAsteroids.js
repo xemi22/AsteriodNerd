@@ -6,7 +6,7 @@ import useFavorite from "../hooks/useFavorite";
 import { useCallback } from "react";
 
 const FavAsteroids = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(null);
   const [asteroids, setAsteriods] = useState({
     favorites: true,
     element_count: Number,
@@ -17,10 +17,13 @@ const FavAsteroids = () => {
   const location = useLocation();
   const response=useFavorite()
   
+  useEffect(()=>{
+    setLoading(true);
+  },[])
 
   const getAsteriods =useCallback(
-  async()=>{
-    let {message,data}=await response();
+  async(signal)=>{
+    let {message,data}=await response(signal);
     if(message==="error")
     { 
       console.error(data);
@@ -39,16 +42,18 @@ const FavAsteroids = () => {
   },[response,location,navigate])
 
   useEffect(() => {
+    const controller=new AbortController();
+    const signal=controller.signal 
     console.log("loading state "+loading);
     if (loading) {
         console.log("calling getAsteriods");
-        getAsteriods();
+        getAsteriods(signal);
       
     }
     return()=>{
-      setLoading(loadingState=>{
-        return false;
-      })
+      console.log("aborting controller")
+      controller.abort();
+      setLoading(false)
     }
   }, [getAsteriods,loading]);
 

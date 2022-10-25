@@ -1,7 +1,7 @@
 
 import fetch from "node-fetch";
 const handleAsteroidRequest  =async(req,res)=>{
-
+    console.log("recieved a asteriods request for nasa api")
     if(!req?.query?.sdate || !req?.query?.edate)
     return res.status(400)
         .json({message:"Need to provide start and end date for asteriod information."})
