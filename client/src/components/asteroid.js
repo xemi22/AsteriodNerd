@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
-const Asteroid = ({ asteroidDataProp, favorites }) => {
+const Asteroid = ({ asteroidDataProp, favorites,favorite }) => {
   const axiosPrivate = useAxiosPrivate();
   const asteroidInfoRef = useRef(null);
   const [hideLightbox, setHideLightbox] = useState(true);
@@ -13,10 +13,23 @@ const Asteroid = ({ asteroidDataProp, favorites }) => {
     diameterMin: "",
     isHazard: "",
   });
-
+  const checkboxRef=useRef(null);
+  
+  useEffect(()=>{
+    if(favorites){
+      checkboxRef.current.checked=true;
+      }
+    else if(!favorites){
+      
+      if(favorite){
+        console.log("got to a favorite in base asteriods search");
+        checkboxRef.current.checked=true;
+      }
+    }
+  },[favorite,favorites])
   useEffect(() => {
     if (asteroidDataProp) {
-      console.log("adding data for single componenet");
+      
       if (favorites) {
         setAsteroidData({
           aName: asteroidDataProp.asteriodName,
@@ -77,7 +90,7 @@ const Asteroid = ({ asteroidDataProp, favorites }) => {
       return (
         <div className="asteroid">
           <div className="pretty p-icon p-round p-smooth">
-            <input onChange={handleChange} type="checkbox" />
+            <input ref={checkboxRef} onChange={handleChange} type="checkbox" />
             <div className="state p-success">
               <i className="icon mdi mdi-check"></i>
               <label></label>
@@ -103,7 +116,7 @@ const Asteroid = ({ asteroidDataProp, favorites }) => {
       return (
         <div className="asteroid">
           <div className="pretty p-icon p-round p-smooth">
-            <input onChange={handleChange} type="checkbox" />
+            <input ref={checkboxRef} onChange={handleChange} type="checkbox" />
             <div className="state p-success">
               <i className="icon mdi mdi-check"></i>
               <label></label>

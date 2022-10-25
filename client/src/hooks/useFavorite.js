@@ -5,12 +5,11 @@ const useFavorite = (signal) => {
   const axiosPrivate = useAxiosPrivate();
   const getFavAsteroids = async () => {
     try {
-      const response = await axiosPrivate.get("/fav-asteroids",{
-        signal:signal
+      const response = await axiosPrivate.get("/fav-asteroids", {
+        signal: signal,
       });
-      let responseData = Object.values(response.data);
-      console.log("useFavorite instance called and returned");
-      return { message: "success", data: responseData };
+
+      return { message: "success", data: response.data };
     } catch (err) {
       return { message: "error", data: err };
     }

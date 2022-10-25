@@ -12,6 +12,7 @@ const FavAsteroids = () => {
     element_count: Number,
     near_earth_objects: [],
   });
+  
  
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,7 +39,7 @@ const FavAsteroids = () => {
             });
           
     }
-    else console.log("why am i here");
+    
   },[response,location,navigate])
 
   useEffect(() => {
@@ -51,7 +52,7 @@ const FavAsteroids = () => {
       
     }
     return()=>{
-      console.log("aborting controller")
+      
       controller.abort();
       setLoading(false)
     }

@@ -34,7 +34,6 @@ const Home = () => {
             },
             signal: controller.signal,
           });
-          console.log("GetAsteriods Function is happening");
           return response.data;
         } catch (err) {
           if ((err.name = "AborError")) console.log("Aborted Request");
