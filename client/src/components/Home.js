@@ -82,7 +82,6 @@ const Home = () => {
   return (
     <div className="asteriods_content">
       <AsteroidControl
-        setLoading={setLoading}
         setAsteroidRequestState={setAsteroidRequestState}
         setStartDate={setStartDate}
         setEndDate={setEndDate}

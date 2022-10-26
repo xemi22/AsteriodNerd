@@ -299,3 +299,8 @@ section {
   padding-top: 2px;
   font-weight: 600;
 }
+.error{
+  color: #f22c37;
+  background-color: #ffeeba47;
+  
+}
